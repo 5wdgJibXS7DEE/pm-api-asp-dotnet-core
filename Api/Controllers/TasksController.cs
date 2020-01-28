@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagement.Api.Representations;
 using ProjectManagement.Definitions;
+using ProjectManagement.Models;
 
 namespace ProjectManagement.Api.Controllers
 {
@@ -18,7 +19,7 @@ namespace ProjectManagement.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<TaskRepresentation> All()
+        public IEnumerable<TaskRepresentation> Get()
         {
             return _tasks.All().Select(t => new TaskRepresentation(t));
         }
@@ -26,12 +27,26 @@ namespace ProjectManagement.Api.Controllers
         [HttpGet("{id}")]
         public ActionResult<TaskRepresentation> Get(Guid id)
         {
-            var task = _tasks.SingleOrDefaultByExternalId(id);
+            Task model = _tasks.SingleOrDefaultByExternalId(id);
 
-            if (task == null)
+            if (model == null)
                 return NotFound();
 
-            return new TaskRepresentation(task);
+            return new TaskRepresentation(model);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] TaskRepresentation input)
+        {
+            if (ModelState.IsValid == false)
+                // todo GSA return more readable validation errors
+                return new BadRequestObjectResult(ModelState);
+
+            Task model = input.ToModel();
+
+            _tasks.Insert(model);
+
+            return CreatedAtAction(nameof(Get), new { id = model.ExternalId }, new TaskRepresentation(model));
         }
     }
 }

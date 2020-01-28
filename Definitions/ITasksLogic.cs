@@ -13,9 +13,8 @@ namespace ProjectManagement.Definitions
         Task SingleOrDefaultByExternalId(Guid externalId);
 
         /// <returns>
-        /// A <c>TaskOverlap</c> object if the assignee has a task overlapping the inserted task,
-        /// <c>null</c> otherwise.
+        /// A list with an <c>TaskOverlap</c> for each task that the inserted task overlaps.
         /// </returns>
-        TaskOverlap Insert(Task task);
+        IEnumerable<TaskOverlap> Insert(Task insert);
     }
 }
