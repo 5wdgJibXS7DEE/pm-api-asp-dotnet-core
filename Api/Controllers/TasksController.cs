@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,17 @@ namespace ProjectManagement.Api.Controllers
         public IEnumerable<TaskRepresentation> All()
         {
             return _tasks.All().Select(t => new TaskRepresentation(t));
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<TaskRepresentation> Get(Guid id)
+        {
+            var task = _tasks.SingleOrDefaultByExternalId(id);
+
+            if (task == null)
+                return NotFound();
+
+            return new TaskRepresentation(task);
         }
     }
 }

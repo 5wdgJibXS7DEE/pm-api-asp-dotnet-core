@@ -26,6 +26,11 @@ namespace ProjectManagement.Logic
             return All().Single(t => t.Id == id);
         }
 
+        public Task SingleOrDefaultByExternalId(Guid externalId)
+        {
+            return All().SingleOrDefault(t => t.ExternalId == externalId);
+        }
+
         public TaskOverlap Insert(Task task)
         {
             // todo GSA implement TasksLogic.Insert

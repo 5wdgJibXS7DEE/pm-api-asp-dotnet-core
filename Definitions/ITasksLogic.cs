@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ProjectManagement.Models;
 
@@ -8,6 +9,8 @@ namespace ProjectManagement.Definitions
         IEnumerable<Task> All();
 
         Task SingleById(int id);
+
+        Task SingleOrDefaultByExternalId(Guid externalId);
 
         /// <returns>
         /// A <c>TaskOverlap</c> object if the assignee has a task overlapping the inserted task,
