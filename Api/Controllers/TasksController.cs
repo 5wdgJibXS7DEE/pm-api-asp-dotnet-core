@@ -1,5 +1,7 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using ProjectManagement.Api.Representations;
 using ProjectManagement.Definitions;
 
 namespace ProjectManagement.Api.Controllers
@@ -15,10 +17,9 @@ namespace ProjectManagement.Api.Controllers
         }
 
         [HttpGet]
-        public IActionResult All()
+        public IEnumerable<TaskRepresentation> All()
         {
-            // todo GSA implement TasksController.All
-            throw new NotImplementedException();
+            return _tasks.All().Select(t => new TaskRepresentation(t));
         }
     }
 }
