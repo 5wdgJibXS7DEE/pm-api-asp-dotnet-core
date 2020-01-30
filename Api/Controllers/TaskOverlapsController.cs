@@ -22,7 +22,7 @@ namespace ProjectManagement.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<TaskOverlapRepresentation> All()
+        public IEnumerable<TaskOverlapRepresentation> Get()
         {
             return _overlaps.All().Select(o => new TaskOverlapRepresentation(o, _tasks));
         }
