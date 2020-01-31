@@ -1,6 +1,7 @@
 using JsonFlatFileDataStore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ProjectManagement.Definitions;
 using ProjectManagement.Logic;
@@ -9,8 +10,11 @@ namespace ProjectManagement.Api
 {
     public class Startup
     {
-        public Startup()
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -23,7 +27,9 @@ namespace ProjectManagement.Api
 
         protected virtual void ConfigureServicesForStorage(IServiceCollection services)
         {
-            services.AddSingleton<IDataStore>(new DataStore("datastore.json"));
+            string filename = Configuration.GetValue<string>("datastoreFilename");
+
+            services.AddSingleton<IDataStore>(new DataStore(filename));
         }
 
         protected void ConfigureServicesForLogic(IServiceCollection services)

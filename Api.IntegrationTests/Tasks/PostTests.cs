@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using ProjectManagement.Models;
 using Xunit;
 using ThreadingTask = System.Threading.Tasks.Task;
 
@@ -32,7 +34,7 @@ namespace ProjectManagement.Api.IntegrationTests.Tasks
             HttpContent postMarchTaskForAssigneeTwo = CreateRequestToPostMonthlyTask(
                 assigneeIdTwo, "2020-03-01T00:00:00Z", "2020-04-01T00:00:00Z");
             HttpContent postOverlapingTaskForAssigneeOne = CreateRequestToPostMonthlyTask(
-                assigneeIdTwo, "2020-02-01T00:00:00Z", "2020-04-01T00:00:00Z");
+                assigneeIdOne, "2020-02-01T00:00:00Z", "2020-04-01T00:00:00Z");
 
             HttpResponseMessage response = await _fixture.Client.PostAsync(
                 _tasksEndpoint, postFebruaryTaskForAssigneeOne);
@@ -50,17 +52,20 @@ namespace ProjectManagement.Api.IntegrationTests.Tasks
                 _tasksEndpoint, postOverlapingTaskForAssigneeOne);
             Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-            //int tasksInStoreCount = _fixture.Client.GetCollection<Task>()
-            //    .AsQueryable()
-            //    .Count();
-            //Assert.Equal(4, tasksInStoreCount);
+            int tasksInStoreCount = _fixture.Store.GetCollection<Task>()
+                .AsQueryable()
+                .Count();
+            Assert.Equal(4, tasksInStoreCount);
 
-            //int overlapsInStoreCount = _fixture.Client.GetCollection<TaskOverlap>()
-            //    .AsQueryable()
-            //    .Count();
-            //Assert.Equal(2, overlapsInStoreCount);
+            int overlapsInStoreCount = _fixture.Store.GetCollection<TaskOverlap>()
+                .AsQueryable()
+                .Count();
+            Assert.Equal(2, overlapsInStoreCount);
 
-            // todo GSA do a get /tasks here and check the result
+            // todo GSA how can I "continue" this test from another test file?
+            // I would like to test GET /api/tasks in a Tasks/GetTests
+            // then I would like to test GET /api/task-overlaps in a TaskOverlaps/GetTests
+            // it would be nice to organize the test files in sync. with the Api controllers
         }
 
         private HttpContent CreateRequestToPostMonthlyTask(
