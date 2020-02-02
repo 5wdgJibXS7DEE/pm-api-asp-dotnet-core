@@ -1,0 +1,137 @@
+{
+	"info": {
+		"_postman_id": "3c256566-7c06-4c3e-bc23-75377c34e1af",
+		"name": "Project Management API",
+		"description": "Play with the API from https://github.com/guillaumesasdy/pm-api-asp-dotnet-core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/api/tasks",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/tasks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John replaces Guillaume (to be confirmed)\",\r\n    \"startsOn\": \"2020-05-10T00:00:00Z\",\r\n    \"endsOn\": \"2020-05-24T00:00:00Z\",\r\n    \"assigneeId\": \"9b4df718-bc04-4c9a-bed2-9dd91c5b3de0\",\r\n    \"managerId\": \"3d50b2d3-beef-47e2-bf0d-c441c14905d2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/tasks",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"tasks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/tasks/id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/api/tasks/60517e60-2a83-416b-a18e-d123be9074e9?",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"tasks",
+						"60517e60-2a83-416b-a18e-d123be9074e9"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/task-overlaps",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/api/task-overlaps",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"task-overlaps"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "08be6dae-8dce-4df7-bb79-28ee03c3c826",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "fbe014f1-b4aa-46fd-9189-9c06da40849a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c5f5c7a7-5096-4ca7-89bd-137849c71858",
+			"key": "baseurl",
+			"value": "http://apps.gsasdy.fr",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": []
+}
