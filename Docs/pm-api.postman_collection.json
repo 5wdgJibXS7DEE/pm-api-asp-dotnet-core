@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "3c256566-7c06-4c3e-bc23-75377c34e1af",
 		"name": "Project Management API",
-		"description": "Play with the API from https://github.com/guillaumesasdy/pm-api-asp-dotnet-core",
+		"description": "Play with the API from https://github.com/5wdgJibXS7DEE/pm-api-asp-dotnet-core",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -129,7 +129,7 @@
 		{
 			"id": "c5f5c7a7-5096-4ca7-89bd-137849c71858",
 			"key": "baseurl",
-			"value": "http://apps.gsasdy.fr",
+			"value": "http://your_url",
 			"type": "string"
 		}
 	],

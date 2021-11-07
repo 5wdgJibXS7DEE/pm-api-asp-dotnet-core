@@ -9,14 +9,14 @@ Open a terminal in the Api folder, run the command `dotnet build`, then run the 
 The application starts with ASP.NET Core's default web server, accessible at http://localhost:5000/ in your favorite Web broser.
 
 ## How to use
-The API is running live on [apps.gsasdy.fr/](http://apps.gsasdy.fr/api/tasks).
+The API is not running live anymore, but the endpoints where:
 * `GET /api/tasks` returns all the tasks in a single page.
 * `POST /api/tasks` creates a task.
 * `GET /api/task-overlaps` returns all the tasks that overlap for the same assignee.
 
 Send a request from your command line with cURL to try it out:
 ```bash
-curl --location --request GET 'http://apps.gsasdy.fr/api/tasks'
+curl --location --request GET '[your_url]/api/tasks'
 ```
 Or [download](Docs/pm-api.postman_collection.json) and import the collection in [Postman]([https://www.getpostman.com/downloads/](https://www.getpostman.com/downloads/)).
 
